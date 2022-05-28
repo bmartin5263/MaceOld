@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.21)
+project(engine)
+
+set(CMAKE_CXX_STANDARD 17)
+
+IF(ANDROID)
+    include(AndroidNdkModules)
+    android_ndk_import_module_native_app_glue()
+    message(STATUS "Mace detected Android build")
+    add_library(engine src/Engine.cpp ndk/src/Log.cpp)
+ELSEIF(IOS)
+    message(STATUS "Mace detected IOS build")
+    add_library(engine src/Engine.cpp ios/src/Log.cpp)
+ELSE()
+    message(STATUS "Mace detected idk build")
+    add_library(engine src/Engine.cpp)
+ENDIF()
+
+target_include_directories(engine PUBLIC include)
+target_include_directories(engine PRIVATE bridge)
