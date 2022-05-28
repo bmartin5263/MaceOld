@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.18)
 project(engine)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 IF(ANDROID)
     include(AndroidNdkModules)
@@ -15,6 +15,14 @@ IF(ANDROID)
             log
             android
             atomic
+    )
+    set_target_properties(
+            engine
+            PROPERTIES
+            CXX_STANDARD 14
+            CXX_STANDARD_REQUIRED YES
+            CXX_EXTENSIONS NO
+            INTERFACE_INCLUDE_DIRECTORIES $<TARGET_PROPERTY:engine,INCLUDE_DIRECTORIES>
     )
 ELSEIF(IOS)
     message(STATUS "Mace detected IOS build")
