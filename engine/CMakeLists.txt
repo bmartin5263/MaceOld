@@ -8,6 +8,14 @@ IF(ANDROID)
     android_ndk_import_module_native_app_glue()
     message(STATUS "Mace detected Android build")
     add_library(engine src/Engine.cpp ndk/src/Log.cpp)
+    target_link_libraries(engine PUBLIC
+            native_app_glue
+            GLESv3
+            EGL
+            log
+            android
+            atomic
+    )
 ELSEIF(IOS)
     message(STATUS "Mace detected IOS build")
     add_library(engine src/Engine.cpp ios/src/Log.cpp)
