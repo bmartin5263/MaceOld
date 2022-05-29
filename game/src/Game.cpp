@@ -3,9 +3,7 @@
 //
 
 #include "Game.h"
-#include "Engine.h"
 
 void Game::play() {
-    Engine engine;
-    engine.run();
+
 }
