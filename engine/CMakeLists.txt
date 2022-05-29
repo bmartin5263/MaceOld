@@ -15,4 +15,5 @@ ELSE()
 ENDIF()
 
 target_include_directories(engine PUBLIC include)
+target_include_directories(engine PUBLIC lib)
 target_include_directories(engine PUBLIC bridge)
